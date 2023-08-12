@@ -1,0 +1,12 @@
+{
+  "name": "@kreutzer/components",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "clean": "pnpm rimraf node_modules && pnpm rimraf dist"
+  },
+  "dependencies": {
+    "@kreutzer/types": "workspace:*",
+    "vue": "^3.3.4"
+  }
+}

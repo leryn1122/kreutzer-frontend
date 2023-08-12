@@ -1,0 +1,16 @@
+{
+  "name": "@kreutzer/router",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "module": "index.ts",
+  "scripts": {
+    "clean": "pnpm rimraf node_modules && pnpm rimraf dist"
+  },
+  "dependencies": {
+    "@kreutzer/types": "workspace:*",
+    "@kreutzer/utils": "workspace:*",
+    "nprogress": "^0.2.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  }
+}

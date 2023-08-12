@@ -1,0 +1,14 @@
+{
+  "name": "@kreutzer/httpclient",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "clean": "pnpm rimraf node_modules && pnpm rimraf dist"
+  },
+  "dependencies": {
+    "@kreutzer/types": "workspace:*",
+    "axios": "^1.4.0",
+    "lodash": "^4.17.21",
+    "vue": "^3.3.4"
+  }
+}
