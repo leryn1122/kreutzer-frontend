@@ -21,64 +21,14 @@ const menuList: Ref<Menu[]> = ref([]);
 
 onMounted(async () => {
   menuList.value = await getMenus();
-  menuList.value = [
-    {
-      name: 'Dashboard',
-      key: 'dashboard',
-      icon: 'dashboard',
-      path: '',
-    },
-    {
-      name: 'Resources',
-      key: 'resource',
-      icon: 'server',
-      path: '',
-    },
-    {
-      name: 'Root List',
-      key: 'root',
-      icon: 'root-list',
-      path: '',
-    },
-    {
-      name: 'Deployment Platform',
-      key: 'control-platform',
-      icon: 'control-platform',
-      path: '',
-    },
-    {
-      name: 'Precise Monitor',
-      key: 'precise-monitor',
-      icon: 'precise-monitor',
-      path: '',
-    },
-    {
-      name: 'Mail',
-      key: 'mail',
-      icon: 'mail',
-      path: '',
-    },
-    {
-      name: 'User Center',
-      key: 'user-center',
-      icon: 'user-circle',
-      path: '',
-    },
-    {
-      name: 'Play',
-      key: 'play-circle',
-      icon: 'play-circle',
-      path: '',
-    },
-  ];
 })
 
 const onChangeMenu = (active) => {
   console.log('change', active);
 }
 
-const collapsed = ref(true);
-const collapsedButtonIcon = ref('chevron-right-double');
+const collapsed = ref(false);
+const collapsedButtonIcon = ref('chevron-left-double');
 
 const changeCollapsed = () => {
   collapsed.value = !collapsed.value;
@@ -86,7 +36,6 @@ const changeCollapsed = () => {
     ? 'chevron-left-double'
     : 'chevron-right-double';
 }
-
 </script>
 
 <template>

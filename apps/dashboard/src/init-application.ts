@@ -1,26 +1,21 @@
-import { ContextOptions, initLayout } from '@kreutzer/layouts';
-import { getMenus } from '@kreutzer/router';
-
+import { ContextOptions, useContext } from '@kreutzer/layouts';
+import { getMenus } from '@/router';
 
 async function initPackages() {
-  const initLayout_ = async () => {
-    await initLayout(() => {
+  const useContext_ = async () => {
+    await useContext(() => {
       return {
-
         getMenus,
-
       } as ContextOptions;
     });
   };
-  await Promise.all([initLayout_()]);
+  await Promise.all([useContext_()]);
 }
 
-function initAppConfigStore() { }
+function initAppConfigStore() {}
 
 export async function initApplication() {
   await initPackages();
-
-
 
   initAppConfigStore();
 }

@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 
 import App from './App.vue';
-import '@/styles/index.less';
 import TDesign from 'tdesign-vue-next';
 
 import { initApplication } from './init-application';

@@ -3,8 +3,6 @@ import { computed, defineComponent } from 'vue';
 import { MenuType, getMenuType } from './menu';
 import topMenuMixed from './layout/top-menu-mixed.vue';
 
-const lockEvents = true;
-
 const layout = computed<ReturnType<typeof defineComponent>>(() => {
   let menuType = getMenuType();
   switch (menuType) {

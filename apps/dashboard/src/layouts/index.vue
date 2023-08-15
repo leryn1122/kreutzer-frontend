@@ -1,11 +1,11 @@
 <template>
-  <layout>
+  <Layout>
     <template #main>
       <RouterView />
     </template>
-  </layout>
+  </Layout>
 </template>
 
 <script lang="ts" setup>
-import { Layout } from '@kreutzer/layouts';
+import Layout from '@kreutzer/layouts';
 </script>

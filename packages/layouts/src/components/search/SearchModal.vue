@@ -1,11 +1,13 @@
 <template>
-  <div :class="`${prefixCls}`">
-    <t-input clearable placeholder="Search something...">
-    </t-input>
-  </div>
+  <Teleport to="body">
+    <div :class="`${prefixCls}`">
+      <t-input clearable placeholder="Search something...">
+      </t-input>
+    </div>
+  </Teleport>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { computed, ref, unref } from 'vue';
 
 const prefixCls = 'kreutzer-app-search-modal';
@@ -19,9 +21,9 @@ defineProps({
 const searchResult = ref([])
 const keyword = ""
 
-const getIsNotData = computed(
-  () => !keyword || unref(searchResult).length === 0,
-)
+// const getIsNotData = computed(
+//   () => !keyword || unref(searchResult).length === 0,
+// )
 
 function handleClose() {
   searchResult.value = []

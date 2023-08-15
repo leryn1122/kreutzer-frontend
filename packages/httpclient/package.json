@@ -6,9 +6,11 @@
     "clean": "pnpm rimraf node_modules && pnpm rimraf dist"
   },
   "dependencies": {
-    "@kreutzer/types": "workspace:*",
+    "@kreutzer/utils": "workspace:*",
     "axios": "^1.4.0",
-    "lodash": "^4.17.21",
     "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@kreutzer/types": "workspace:*"
   }
 }

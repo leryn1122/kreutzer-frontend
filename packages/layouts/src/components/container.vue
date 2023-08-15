@@ -1,9 +1,9 @@
 
-<script lang='ts'>
+<script lang="ts">
 export default { name: 'LayoutMainContainer' };
 </script>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -25,13 +25,13 @@ const isVertical = computed(() => {
 
 <template>
   <section class="container">
-    <div>123123123</div>
-    <slot>
+    <slot class="main">
+      <div>Pages requires to be mounted!!</div>
     </slot>
   </section>
 </template>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .container {
   height: 100%;
   display: flex;

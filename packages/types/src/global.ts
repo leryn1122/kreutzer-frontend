@@ -1,3 +1,5 @@
+export {}
+
 declare global {
-  type AnyFunction<T> = (...args: any[]) => T;
+  export type AnyFunction<T> = (...args: any[]) => T;
 }

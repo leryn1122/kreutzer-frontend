@@ -1,20 +1,19 @@
-import { VNode } from "vue"
+import { VNode } from 'vue';
 
 type AnyFunction<T> = (...args: any[]) => T;
 
 export interface ContextOptions {
   getMenus: () => Promise<any>;
-  Logo: VNode | null,
+  Logo: VNode | null;
 }
 
-export interface ContextOptions {
-}
+export interface ContextOptions {}
 
 export let context: ContextOptions = {
   getMenus: async () => ({}),
   Logo: null,
 };
 
-export const initLayout = async (func: AnyFunction<any>) => {
+export const useContext = async (func: AnyFunction<any>) => {
   context = func();
 };

@@ -1,3 +1,4 @@
-export * from './src';
+import Layout from './src';
 
-export { default as Layout } from './src/index.vue';
+export * from './src';
+export default Layout;

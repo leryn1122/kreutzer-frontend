@@ -1,12 +1,12 @@
-import { Layout } from '@kreutzer/layouts';
+import Result404 from '@/pages/result/404.vue';
 
 export default [
   {
     path: '/',
-    component: Layout,
+    component: Result404,
     name: 'homepage',
     meta: {
-      title: '仪表盘',
+      title: '主页',
       orderNo: 0,
     },
   },
