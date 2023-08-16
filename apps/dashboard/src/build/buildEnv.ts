@@ -4,7 +4,6 @@ import path from 'path';
 
 import type { Recordable, ViteEnv } from '@kreutzer/types';
 
-
 export function isDevEnv(mode: string): boolean {
   return 'development' === mode;
 }

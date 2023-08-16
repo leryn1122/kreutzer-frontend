@@ -1,10 +1,10 @@
 import { ConfigEnv, UserConfig, loadEnv } from 'vite';
-import vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 import package_ from './package.json';
 import { wrapperEnv } from './src/build/buildEnv';
 import { createProxy } from './src/build/proxy';
+import { createVitePlugins } from './src/build/plugins';
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
@@ -18,10 +18,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     // lastBuildTime: moment().format('YYYY-MM-DD HH:mm:ss'),
   };
   const CWD = process.cwd();
-  const isBuild = 'build' === command;
-
   const env = loadEnv(mode, CWD);
   const viteEnv = wrapperEnv(env);
+  const isBuild = command === 'build';
   const { VITE_BASE_URL, VITE_PORT, VITE_PROXY } = viteEnv;
 
   return {
@@ -32,13 +31,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
 
-    plugins: [vue()],
+    plugins: createVitePlugins(viteEnv, isBuild),
 
     css: {
       modules: false,
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
+          // modifyVars: {
+          //   '@prefix': 'kreutzer',
+          // },
+          additionalData: `@import url('@/styles/index.less');`,
         },
       },
     },

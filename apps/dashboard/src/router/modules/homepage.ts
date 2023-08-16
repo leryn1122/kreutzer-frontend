@@ -1,12 +1,10 @@
-import Result404 from '@/pages/result/404.vue';
-
 export default [
   {
     path: '/',
-    component: Result404,
+    component: () => import('@/pages/result/empty.vue'),
     name: 'homepage',
     meta: {
-      title: '主页',
+      title: 'Homepage',
       orderNo: 0,
     },
   },

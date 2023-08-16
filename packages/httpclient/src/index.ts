@@ -3,7 +3,7 @@ import { deepMerge } from '@kreutzer/utils';
 
 import { CreateHttpClientOptoins, HttpClient } from './axios';
 import { ContentTypeEnum } from './http';
-import { context } from '../bridge';
+import { context } from '../context';
 
 export function createHttpClient(options?: Partial<CreateHttpClientOptoins>): HttpClient {
   let opt: CreateHttpClientOptoins = deepMerge(

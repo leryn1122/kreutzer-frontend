@@ -13,7 +13,7 @@
     "*.env": "$(capture).env.*",
     "CHANGELOG.md": "CHANGELOG*",
     "Dockerfile": ".dockerignore",
-    "package.json": ".gitattributes,.gitignore,pnpm-lock.yaml,.npmrc,package-lock.json,pnpm-workspace.yaml,LICENSE,README*",
+    "package.json": "components.d.ts,auto-imports.d.ts,.gitattributes,.gitignore,pnpm-lock.yaml,.npmrc,package-lock.json,pnpm-workspace.yaml,LICENSE,README*",
     "tsconfig.json": "tsconfig*.json",
     ".eslintrc.js": ".eslintignore,.eslintrc.js,.prettierignore,.prettierrc.js,.stylelintignore,.stylelintrc.js"
   },

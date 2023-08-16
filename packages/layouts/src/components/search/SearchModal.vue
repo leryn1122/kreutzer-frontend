@@ -1,20 +1,16 @@
-<template>
-  <Teleport to="body">
-    <div :class="`${prefixCls}`">
-      <t-input clearable placeholder="Search something...">
-      </t-input>
-    </div>
-  </Teleport>
-</template>
-
 <script lang="ts" setup>
 import { computed, ref, unref } from 'vue';
+import SearchFooter from './SearchFooter.vue';
 
-const prefixCls = 'kreutzer-app-search-modal';
+import { context } from '../../../context';
+
+const { useDesign } = context;
+const { prefixCls } = useDesign('search-modal');
 
 defineProps({
   visible: {
     type: Boolean,
+    default: false,
   }
 })
 
@@ -31,8 +27,30 @@ function handleClose() {
 }
 </script>
 
+<template>
+  <Teleport to="body">
+    <Transition mode="out-in">
+      <div @click.stop v-if="visible">
+        <div :class="`${prefixCls}-search-modal`">
+          <t-input 
+            placeholder="Search something..."
+            clearable
+          />
+          <div>
+            
+          </div>
+          <ul>
+            <li></li>
+          </ul>
+          <SearchFooter />
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
+</template>
+
 <style lang="less">
-.kreutzer-app-search-modal {
+.kreutzer-search-modal {
   // position: fixed;
   // top: 0;
   // left: 0;

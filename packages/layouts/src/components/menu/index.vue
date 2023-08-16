@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { Ref, onMounted, ref } from 'vue';
 
-import { context } from '../../context';
-
 import { Menu } from '@kreutzer/types';
+
+import { context } from '../../../context';
 
 const props = defineProps({
   mode: {

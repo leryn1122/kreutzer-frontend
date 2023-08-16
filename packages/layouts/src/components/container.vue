@@ -31,7 +31,7 @@ const isVertical = computed(() => {
   </section>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .container {
   height: 100%;
   display: flex;

@@ -58,7 +58,9 @@ function goBackPage(): void {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
+@import url('@/styles/index.less');
+
 .result {
   &-link {
     // color: var(--td-brand-color);

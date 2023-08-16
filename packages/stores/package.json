@@ -1,16 +1,14 @@
 {
-  "name": "@kreutzer/httpclient",
+  "name": "@kreutzer/stores",
   "version": "0.1.0",
   "main": "index.ts",
+  "module": "index.ts",
   "scripts": {
     "clean": "pnpm rimraf node_modules && pnpm rimraf dist"
   },
   "dependencies": {
-    "@kreutzer/utils": "workspace:*",
-    "axios": "^1.4.0",
+    "pinia": "^2.1.6",
+    "pinia-plugin-persistedstate": "^3.2.0",
     "vue": "^3.3.4"
-  },
-  "devDependencies": {
-    "@kreutzer/types": "workspace:*"
   }
 }

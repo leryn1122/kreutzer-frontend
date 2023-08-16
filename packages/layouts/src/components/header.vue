@@ -38,7 +38,7 @@ import Settings from '../components/settings/index.vue';
 import User from '../components/users/index.vue';
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .space-border {
   padding: 12;
 }

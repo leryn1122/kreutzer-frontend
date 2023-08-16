@@ -1,7 +1,9 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
 
-let router: Router;
+import { setupNavigationGuardChain } from './guard';
+
+export let router: Router;
 
 export function initRouter(path: string, routes: Array<RouteRecordRaw>): Router {
   router = createRouter({
@@ -14,6 +16,8 @@ export function initRouter(path: string, routes: Array<RouteRecordRaw>): Router 
 }
 
 export function setupRouter(app: ReturnType<typeof createApp>): ReturnType<typeof createApp> {
+  setupNavigationGuardChain().register(router);
+
   app.use(router);
   return app;
 }

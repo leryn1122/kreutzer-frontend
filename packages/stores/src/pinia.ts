@@ -1,8 +1,9 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+
 import { persistGlobalConfig } from './persist';
+import { createStorageName } from './utils';
 
 const pinia = createPinia();
 

@@ -5,7 +5,7 @@ import { AbortedRequestQueue } from './abort';
 import { HttpResult } from '@kreutzer/types';
 import { deepClone } from '@kreutzer/utils';
 
-export type RequestURL = string | URL;
+export type RequestURL = string;
 
 export class HttpClient {
   private axiosInstance: AxiosInstance;
@@ -33,8 +33,7 @@ export class HttpClient {
   private sendRequest<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
     let _config: AxiosRequestConfig = deepClone(config);
     const { requestOptions } = this.options;
-    const _options: RequestOptions = Object.assign({}, requestOptions, options);
-    _config = _options;
+    _config = Object.assign({}, _config, requestOptions, options);
 
     return new Promise((resolve, reject) => {
       this.axiosInstance
@@ -52,19 +51,47 @@ export class HttpClient {
   }
 
   get<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    return this.sendRequest({ ...config, method: HttpMethod.GET }, options);
+    return this.sendRequest(
+      {
+        ...config,
+        url: url,
+        method: HttpMethod.GET,
+      },
+      options,
+    );
   }
 
   post<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    return this.sendRequest({ ...config, method: HttpMethod.POST }, options);
+    return this.sendRequest(
+      {
+        ...config,
+        url: url,
+        method: HttpMethod.POST,
+      },
+      options,
+    );
   }
 
   put<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    return this.sendRequest({ ...config, method: HttpMethod.PUT }, options);
+    return this.sendRequest(
+      {
+        ...config,
+        url: url,
+        method: HttpMethod.PUT,
+      },
+      options,
+    );
   }
 
   delete<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
-    return this.sendRequest({ ...config, method: HttpMethod.DELETE }, options);
+    return this.sendRequest(
+      {
+        ...config,
+        url: url,
+        method: HttpMethod.DELETE,
+      },
+      options,
+    );
   }
 
   public setHeader<T = any>(headers: T): void {
@@ -134,4 +161,3 @@ export interface InterceptorConfig
     ) => AxiosResponse<any> | Promise<AxiosResponse<T>>;
     interceptorResponseRejected: (error: Error | AxiosError) => any;
   }> {}
-
