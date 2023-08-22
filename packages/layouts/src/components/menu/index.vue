@@ -23,7 +23,7 @@ onMounted(async () => {
   menuList.value = await getMenus();
 })
 
-const onChangeMenu = (active) => {
+const onChangeMenu = (active: any) => {
   console.log('change', active);
 }
 

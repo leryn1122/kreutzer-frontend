@@ -8,8 +8,6 @@
   },
   "include": [
     "vite.config.ts",
-    "*.json",
-    "buildx/**/*.ts",
-    "mock/**/*.ts"
+    "*.json"
   ]
 }

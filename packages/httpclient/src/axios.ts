@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-
-import { HttpMethod } from './http';
-import { AbortedRequestQueue } from './abort';
+import qs from 'qs';
 import { HttpResult } from '@kreutzer/types';
 import { deepClone } from '@kreutzer/utils';
+import { ContentTypeEnum, HttpMethod } from './http';
+import { AbortedRequestQueue } from './abort';
 
 export type RequestURL = string;
 
@@ -18,10 +18,6 @@ export class HttpClient {
     this.setupInterceptors();
   }
 
-  private createAxios(config: AxiosRequestConfig): void {
-    this.axiosInstance = axios.create(config);
-  }
-
   private getInstance(): AxiosInstance {
     return this.axiosInstance;
   }
@@ -30,27 +26,31 @@ export class HttpClient {
     // TODO
   }
 
-  private sendRequest<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+  private sendRequest<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<HttpResult<T>> {
     let _config: AxiosRequestConfig = deepClone(config);
-    const { requestOptions } = this.options;
-    _config = Object.assign({}, _config, requestOptions, options);
+    _config = Object.assign({}, _config, this.options, options) as AxiosRequestConfig;
+
+    if (_config.headers?.['Content-Type'] === ContentTypeEnum.FORM_URLENCODED) {
+      _config.data = qs.stringify(deepClone(_config.data)); 
+    }
 
     return new Promise((resolve, reject) => {
-      this.axiosInstance
+      this.getInstance()
         .request<any, AxiosResponse<HttpResult<T>>>(_config)
         .then((resp: AxiosResponse<HttpResult<T>>) => {
-          resolve(resp as unknown as Promise<T>);
+          resolve(resp?.data as unknown as Promise<HttpResult<T>>);
         })
         .catch((e: Error | AxiosError) => {
           if (axios.isAxiosError(e)) {
             // TODO:
+            console.error(e);
           }
           reject(e);
         });
     });
   }
 
-  get<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+  get<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<HttpResult<T>> {
     return this.sendRequest(
       {
         ...config,
@@ -61,33 +61,36 @@ export class HttpClient {
     );
   }
 
-  post<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+  post<D = any, T = any>(url: RequestURL, data?: D, config?: AxiosRequestConfig, options?: RequestOptions): Promise<HttpResult<T>> {
     return this.sendRequest(
       {
         ...config,
         url: url,
+        data: data,
         method: HttpMethod.POST,
       },
       options,
     );
   }
 
-  put<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+  put<D = any, T = any>(url: RequestURL, data?: D, config?: AxiosRequestConfig, options?: RequestOptions): Promise<HttpResult<T>> {
     return this.sendRequest(
       {
         ...config,
         url: url,
+        data: data,
         method: HttpMethod.PUT,
       },
       options,
     );
   }
 
-  delete<T = any>(url: RequestURL, config?: AxiosRequestConfig, options?: RequestOptions): Promise<T> {
+  delete<D = any, T = any>(url: RequestURL, data?: D, config?: AxiosRequestConfig, options?: RequestOptions): Promise<HttpResult<T>> {
     return this.sendRequest(
       {
         ...config,
         url: url,
+        data: data,
         method: HttpMethod.DELETE,
       },
       options,
@@ -95,7 +98,7 @@ export class HttpClient {
   }
 
   public setHeader<T = any>(headers: T): void {
-    Object.assign(this.axiosInstance.defaults.headers, headers);
+    Object.assign(this.getInstance().defaults.headers, headers);
   }
 
   public useInterceptos(config: InterceptorConfig): void {
@@ -107,7 +110,7 @@ export class HttpClient {
       interceptorResponseRejected,
     } = config;
 
-    this.axiosInstance.interceptors.request.use(
+    this.getInstance().interceptors.request.use(
       // FIXIME
       // (config: AxiosRequestConfig) => {
       (config: any) => {
@@ -126,7 +129,7 @@ export class HttpClient {
       },
     );
 
-    this.axiosInstance.interceptors.response.use(
+    this.getInstance().interceptors.response.use(
       (response: AxiosResponse) => {
         if (enableAbortRequest) {
         }

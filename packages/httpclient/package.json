@@ -8,9 +8,11 @@
   "dependencies": {
     "@kreutzer/utils": "workspace:*",
     "axios": "^1.4.0",
+    "qs": "^6.11.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@kreutzer/types": "workspace:*"
+    "@kreutzer/types": "workspace:*",
+    "@types/qs": "^6.9.7"
   }
 }

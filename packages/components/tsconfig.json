@@ -36,15 +36,9 @@
     "src/**/*.js",
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "src/**/*.jsx",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "../../packages/**/*.js",
-    "../../packages/**/*.ts",
-    "../../packages/**/*.d.ts",
-    "../../packages/**/*.jsx",
-    "../../packages/**/*.tsx",
-    "../../packages/**/*.vue",
+    "context.ts"
   ],
   "references": [
     {

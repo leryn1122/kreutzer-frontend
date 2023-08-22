@@ -7,6 +7,7 @@ import { useUserStore } from '@/store/user';
 async function initPackages() {
   const initLayoutContext = async () => {
     await useLayoutContext(() => {
+      // @ts-ignore
       return {
         useDesign,
         useUserStore,
@@ -17,6 +18,7 @@ async function initPackages() {
 
   const initHttpContext = async () => {
     await useHttpContext(() => {
+      // @ts-ignore
       return {
         apiUrl: 'http://localhost:5173',
       } as HttpContextOptions;

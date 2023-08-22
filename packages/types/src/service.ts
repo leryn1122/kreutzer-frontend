@@ -1,6 +1,6 @@
 export interface HttpResult<T = any> {
-  code: Number;
+  code: number;
   message?: string;
-  data: T;
-  type: 'collection' | 'object';
+  data?: T;
+  type: 'collection' | 'object' | 'string';
 }

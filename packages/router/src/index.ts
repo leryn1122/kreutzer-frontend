@@ -12,6 +12,7 @@ export function initRouter(path: string, routes: Array<RouteRecordRaw>): Router 
     strict: true,
     scrollBehavior: () => ({ left: 0, top: 0, el: '#app', behavior: 'smooth' }),
   });
+  console.log(router.getRoutes());
   return router;
 }
 

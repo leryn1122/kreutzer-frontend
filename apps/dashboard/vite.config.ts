@@ -2,9 +2,7 @@ import { ConfigEnv, UserConfig, loadEnv } from 'vite';
 import path from 'path';
 
 import package_ from './package.json';
-import { wrapperEnv } from './src/build/buildEnv';
-import { createProxy } from './src/build/proxy';
-import { createVitePlugins } from './src/build/plugins';
+import { createProxy, createVitePlugins, wrapperEnv } from './buildx';
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {

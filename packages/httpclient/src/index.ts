@@ -5,6 +5,7 @@ import { CreateHttpClientOptoins, HttpClient } from './axios';
 import { ContentTypeEnum } from './http';
 import { context } from '../context';
 
+
 export function createHttpClient(options?: Partial<CreateHttpClientOptoins>): HttpClient {
   let opt: CreateHttpClientOptoins = deepMerge(
     {
@@ -31,3 +32,6 @@ export function createHttpClient(options?: Partial<CreateHttpClientOptoins>): Ht
 }
 
 export const httpClient = createHttpClient();
+
+export * from './http';
+export default httpClient;

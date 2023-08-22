@@ -1,5 +1,3 @@
-import { AnyFunction } from '@kreutzer/types';
-
 export interface ContextOptions {
   apiUrl?: string;
 }

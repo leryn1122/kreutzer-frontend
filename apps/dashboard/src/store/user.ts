@@ -1,10 +1,11 @@
 import { defineStore } from "@kreutzer/stores";
+import { LoginParams, userLogin } from "@/apis/user";
 
 export interface UserState {
   userInfo: Nullable<UserInfo>,
   accessToken?: string,
   roles: RoleInfo[],
-  sessionTimeout?: boolean,
+  sessionTimeout: boolean,
   lastUpdateTime: number,
 }
 
@@ -26,22 +27,22 @@ export const useUserStore = defineStore('user-store', {
     roles: [],
     sessionTimeout: false,
     lastUpdateTime: 0,
-  })
+  }),
   getters: {
     getUserInfo(): Nullable<UserInfo> {
       return this.userInfo;
     },
-    getAccessToken(): ?string {
+    getAccessToken(): string | undefined {
       return this.accessToken;
     },
     getRoleInfo(): RoleInfo[] {
       return this.roles;
     },
     getSessionTimeout(): boolean {
-      return this.userInfo;
+      return this.sessionTimeout;
     },
     getLastUpdateTime(): number {
-      return this.userInfo;
+      return this.lastUpdateTime;
     },
   },
   actions: {
@@ -49,7 +50,7 @@ export const useUserStore = defineStore('user-store', {
       this.userInfo = info;
       this.lastUpdateTime = new Date().getTime();
     },
-    setAccessToken(token: string?) {
+    setAccessToken(token: string | undefined) {
       this.accessToken = token ? token : '';
     },
     setRoles(roles: RoleInfo[]) {
@@ -58,6 +59,10 @@ export const useUserStore = defineStore('user-store', {
     setSessionTimeout(timeout: boolean) {
       this.sessionTimeout = timeout;
     },
-  }
+    async login(params: LoginParams): Promise<Nullable<UserInfo>> {
+      userLogin(params);
 
+      return null;
+    }
+  },
 })

@@ -1,23 +1,15 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue';
 
-import { getHelmEnv, listRepos } from '@/apis/publish/helm';
+import { getHelmEnv, listRepos, Repos } from '@/apis/publish/helm';
 import { columns as _columns } from './data';
 
 let helmEnv = ref(null);
-let appStores = ref(null);
+let appStores = ref();
 
-function listAppStores() {
+async function listAppStores() {
   listRepos().then(res => {
-    appStores.value = res.data.data;
-  }).catch((e) => {
-    console.log(e);
-  })
-}
-
-function seeHelmEnv() {
-  getHelmEnv().then(res => {
-    helmEnv.value = res.data;
+    appStores.value = res.data!;
   }).catch((e) => {
     console.log(e);
   })
@@ -39,16 +31,13 @@ onMounted(async () => {
 </script>
 
 <template>
+  <div>AppStores refer to helm repo.</div>
+
   <div>
     <t-button @click="listAppStores">
       Refresh
     </t-button>
-    <t-button @click="seeHelmEnv" variant="outline">
-      Configuration
-    </t-button>
   </div>
-
-  <div>AppStores refer to helm repo.</div>
 
   <div class="">
     <t-table

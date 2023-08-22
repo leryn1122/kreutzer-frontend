@@ -15,4 +15,12 @@ export default [
       title: 'Apps',
     },
   },
+  {
+    path: '/shell',
+    component: () => import('@/pages/publish/shell'),
+    name: 'shell',
+    meta: {
+      title: 'Shell',
+    },
+  },
 ];

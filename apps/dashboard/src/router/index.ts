@@ -11,12 +11,6 @@ const fixedModules = import.meta.glob('./modules/**/!(homepage).ts', { eager: tr
 
 // 其他固定路由
 const defaultRouterList: Array<RouteRecordRaw> = [
-  {
-    path: '/login',
-    name: 'login',
-    // component: () => import('@/pages/Login/index.vue'),
-    component: () => undefined,
-  },
 ];
 
 // 存放固定路由
