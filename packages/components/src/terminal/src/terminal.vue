@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType, onMounted, onUnmounted, withScopeId } from 'vue';
+import { PropType, onMounted, onUnmounted } from 'vue';
 import { Terminal } from 'xterm';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import { AttachAddon } from 'xterm-addon-attach';

@@ -1,17 +1,16 @@
 import { ConfigEnv, UserConfig, loadEnv } from 'vite';
 import path from 'path';
 
-import package_ from './package.json';
-import { createProxy, createVitePlugins, wrapperEnv } from './buildx';
+import packageJson from './package.json';
+import { createProxy, createVitePlugins, renderAssetFileNames, renderChunkFileNames, wrapperEnv } from './buildx';
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
-  const { name, version, dependencies } = package_;
+  const { name, version } = packageJson;
   const __APP_INFO__ = {
     package: {
       name,
       version,
-      dependencies,
     },
     // lastBuildTime: moment().format('YYYY-MM-DD HH:mm:ss'),
   };
@@ -27,6 +26,30 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       alias: {
         '@': path.resolve(__dirname, './src'),
       },
+    },
+
+    build: {
+      terserOptions: {
+        compress: {
+          keep_infinity: true,
+          drop_console: true,
+        },
+      },
+      chunkSizeWarningLimit: 1500,
+      rollupOptions: {
+        output: {
+          compact: true,
+          entryFileNames(chunkInfo) {
+            return chunkInfo.name ? `${chunkInfo.name.toLocaleLowerCase()}.js` : '';
+          },
+          chunkFileNames: renderChunkFileNames,
+          assetFileNames: renderAssetFileNames,
+        },
+      },
+    },
+
+    define: {
+      __APP_INFO__: JSON.stringify(__APP_INFO__),
     },
 
     plugins: createVitePlugins(viteEnv, isBuild),

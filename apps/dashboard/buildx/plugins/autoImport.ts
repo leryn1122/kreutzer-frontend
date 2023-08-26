@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite';
-import { ViteEnv } from '@kreutzer/types';
+import type { ViteEnv } from '@kreutzer/types';
 
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';

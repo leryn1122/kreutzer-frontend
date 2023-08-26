@@ -5,6 +5,7 @@ import createVuePlugin from '@vitejs/plugin-vue';
 
 import type { ViteEnv } from '@kreutzer/types';
 import useAutoImportPlugins from './autoImport';
+import useCompressionPlugin from './compress';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean): (Plugin | Plugin[])[] {
   const vitePlugins: (Plugin | Plugin[])[] = [
@@ -30,7 +31,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean): (Plugin |
 
   if (isBuild) {
     // vite-plugin-compression
-    // vitePlugins.push(useCompressionPlugin(viteEnv, isBuild));
+    vitePlugins.push(useCompressionPlugin(viteEnv, isBuild));
   }
 
   return vitePlugins;
